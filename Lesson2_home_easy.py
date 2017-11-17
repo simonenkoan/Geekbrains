@@ -1,97 +1,73 @@
-# a = range (0,100)
-#
-# for x in a:
-#     # print(type(str(x)))
-#     y = str(x)
-#     z = type(y)
-#     print(y,z)
 
-# print('Task1')
-# f_name = '0'
-# s_name = '0'
-# age = 0
-# weight = 0
-# f_name = input('Please input your first name ')
-# s_name = str(input('Please input your second name '))
-# age = int(input('Please input your age '))
-# weight = int(input('Please input your weight '))
+# Задача-1:
+# Дан список фруктов.
+# Напишите программу, выводящую фрукты в виде нумерованного списка,
+# выровненного по правой стороне.
 
-#
-# str = "this is string example....wow!!!";
-#
-# sub = "i";
-# print ("str.count(sub, 4, 40) : ", str.count(sub, 4, 40))
-# sub = "wow";
-# print ("str.count(sub) : ", str.count(sub))
+print("Задача 1. Способ 1")
+fruits = ['яблоко', 'банан', 'киви', 'апельсин']
+n = 0
+for fruit in fruits:
+    print (n, '{:>8}'.format(fruit))
+    n += 1
+print("")
 
 
-# fruits = ['яблоко', 'банан', 'киви', 'апельсин']
-#
-# n = 0
-# for fruit in fruits:
-#     print (n, '{:>8}'.format(fruit))
-#     n += 1
-#
-#
-# # Задача 1
-# fruits = ['яблоко', 'банан', 'киви', 'апельсин']
-#
-# for index, fruit in enumerate(fruits):
-#      print(index, '{:>8}'.format(fruit))
-####
+print("Задача 1. Способ 2")
+fruits = ['яблоко', 'банан', 'киви', 'апельсин']
+for index, fruit in enumerate(fruits):
+    print(index, '{:>8}'.format(fruit))
+print("")
 
-# Задача 2
 
-# spisok1 = [1, 2, 10, 'a', 'b', 'y']
-# spisok2 = [1, 2, 20, 'a', 'b', 'z']
-#
-# spisok3 = set(spisok1) - set(spisok2)
-# print(spisok3, type(spisok3))
+# Задача 2 (через множества)
 
-# Задача 2
-
+print("Задача 2. Способ 1")
 spisok1 = [1, 2, 10, 'a', 'b', 'y']
 spisok2 = [1, 2, 20, 'a', 'b', 'z']
+spisok3 = set(spisok1) - set(spisok2)
+print(spisok3, type(spisok3))
+print("")
 
-# spisok3 = spisok1  spisok2
+# Задача-2:
+# Даны два произвольные списка.
+# Удалите из первого списка элементы, присутствующие во втором списке.
 
-# for index1,znach1 in enumerate(spisok1):
-#     for index2,znach2 in enumerate(spisok2):
-#         if index1 == index2:
-#             spisok1.pop(index1)
-# for index1,znach1 in enumerate(spisok1):
-#     if znach1 in spisok2:
-#         spisok1.remove(znach1)
-
-for index1 in spisok1:
-    # if spisok1[index1] in spisok2:
-    #     spisok1.remove(index1)
-    print (spisok1[index1])
-# print (spisok1)
-
-
-# n = 0
-
-# print( '{0[0]} {0[1]}'.format(fruits))
-#     # n += 1
-
-
-
-
-# print("Units destroyed: {players[0]}".format(players = [1, 2, 3]))
-
-
-
-
-
-spisok1 = [1, 2, 3, 'mark', 'alex', 'lorem']
-spisok2 = [2, 4, 3, 'mark', 'alex', 'ray']
+print("Задача 2. Способ 2")
+spisok1 = [1, 2, 10, 'a', 'b', 'y']
+spisok2 = [1, 2, 20, 'a', 'b', 'z']
 spisok3 = []
+for index, znach in enumerate(spisok1):
+    if znach not in spisok2:
+         spisok3.append(znach)
+print(spisok3)
+print("")
 
+
+print("Задача 2. Способ 3")
+spisok1 = [1, 2, 10, 'a', 'b', 'y']
+spisok2 = [1, 2, 20, 'a', 'b', 'z']
+spisok3 = []
 for znach in spisok1:
     if znach not in spisok2:
         spisok3.append(znach)
 print(spisok3)
-1
+print("")
 
+
+# Задача-3:
+# Дан произвольный список из целых чисел.
+# Получите НОВЫЙ список из элементов исходного, выполнив следующие условия:
+# если элемент кратен двум, то разделить его на 4, если не кратен, то умножить на два.
+
+print("Задача 3.")
+spisok1 = [1, 2, 10, 16, 19, 40]
+spisok4 = []
+for c in spisok1:
+    if c % 2 == 0:
+        spisok4.append(int(c/4))
+    else:
+        spisok4.append(c*2)
+print (spisok4)
+# spisok2 = [c*2 for c in spisok1 if c % 2 == 0 ]
 
