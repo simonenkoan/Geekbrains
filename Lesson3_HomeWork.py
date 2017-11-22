@@ -1,10 +1,34 @@
+# Задание - 1
+# Создайте функцию, принимающую на вход Имя, возраст и город проживания человека
+# Функция должна возвращать строку вида "Василий, 21 год(а), проживает в городе Москва"
 
-sdfsdfsdfsdfsdfsdf
+def output_information(*args):
+    print('{}, {} год(а), проживает в городе {}'.format(*args))
 
-sdfsdfsdfsdfsdfsdf
-sdfsdfsdfsdfsdfsdf
-sdfsdfsdfsdfsdfsdf
-sdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf
-sdfsdfsdfsdfsdfsdf
-sdfsdfsdfsdfsdfsdf
+output_information(*['Василий', '21', 'Москва'])
 
+
+# Задание - 2
+# Создайте функцию, принимающую на вход 3 числа, и возвращающую наибольшее из них
+
+def max_number_output(*args):
+    max = 0
+    for i in args:
+        if i > max:
+            max = i
+    print(max)
+
+max_number_output(*[2000,100,1000])
+
+
+# Задание - 3
+# Создайте функцию, принимающую неограниченное количество строковых аргументов,
+# верните самую длинную строку из полученных аргументов
+
+def max_len_str(*args):
+    max = []
+    for i in args:
+        if len(i) > len(max):
+            max = i
+    print(max)
+max_len_str(*['aaa', 'vvvvvvvvvvv', 'qweqweqwe', '1', 'dddd'])
