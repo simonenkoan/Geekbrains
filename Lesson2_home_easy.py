@@ -62,12 +62,13 @@ print("")
 
 print("Задача 3.")
 spisok1 = [1, 2, 10, 16, 19, 40]
+print ()
 spisok4 = []
 for c in spisok1:
     if c % 2 == 0:
         spisok4.append(int(c/4))
     else:
         spisok4.append(c*2)
-print (spisok4)
+print(spisok4)
 # spisok2 = [c*2 for c in spisok1 if c % 2 == 0 ]
 
