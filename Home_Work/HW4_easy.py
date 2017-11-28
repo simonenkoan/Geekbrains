@@ -31,17 +31,32 @@ list_fruits = ['яблоко', 'банан', 'киви', 'апельсин', 'к
 
 list_citrus = ['лимон', 'мандарин', 'апельсин', 'киви']
 
-# list_to_gether = [i for i in list_citrus] + [i for i in list_fruits]
+new_list_citrus = list(set(list_citrus))
+new_list_fruits = list(set(list_fruits))
+
+print(new_list_citrus)
+print(new_list_fruits)
 
 list_to_gether = []
 
-for i in list_fruits:
-    for y in list_citrus:
-        if i == y:
-            list_to_gether.append(i)
-
-
-
+list_to_gether = [i for i in new_list_fruits for y in new_list_citrus if i == y]
 
 print(list_to_gether)
+
+
+# Задание-3:
+# Дан список, заполненный произвольными числами.
+# Получить список из элементов исходного, удовлетворяющих следующим условиям:
+# + Элемент кратен 3
+# + Элемент положительный
+# + Элемент не кратен 4
+
+list_num = [random.randint(-100,100) for i in range(20)]
+
+print(list_num)
+
+list_plus_if = [i for i in list_num if i % 3 == 0 and i > 0 and i % 4 != 0]
+
+print(list_plus_if)
+
 
