@@ -360,12 +360,12 @@ with open('1.txt', 'r', encoding='UTF-8') as file:
 # a = 10
 # b = 10
 # print(a is b)
-
+#############
 # c = [1, 2]
 # d = [1, 2]
 # print(c is d)
 # a = None
-
+#############
 import random
 
 #
@@ -417,8 +417,86 @@ finally:
 print(100)
 
 #################################УРОК 5####################################
+# import code2
+# from code2 import summ_plus_100
+# from code2 import pow
+# from code2 import *
 
+# print(code2.summ_plus_100(1))
+# print(code2.pow(1, 2))
+
+# print(summ_plus_100(1))
+# print(pow(1, 2))
+
+# import sys
+# print(sys.path)
+
+
+# import os
+#
+# print(os.name)
+# print(os.getcwd())
+# try:
+#     os.mkdir('test_dir')
+# except FileExistsError:
+#     print('Такая папка уже есть!')
+
+import os
+import sys
+print('sys.argv = ', sys.argv)
+
+def print_help():
+    print("help - получение справки")
+    print("mkdir <dir_name> - создание директории")
+    print("ping - тестовый ключ")
+
+def make_dir():
+    if not dir_name:
+        print("Необходимо указать имя директории вторым параметром")
+        return
+    dir_path = os.path.join(os.getcwd(), dir_name)
+    try:
+        os.mkdir(dir_path)
+        print('директория {} создана'.format(dir_name))
+    except FileExistsError:
+        print('директория {} уже существует'.format(dir_name))
+
+def ping():
+    print("pong")
+
+do = {
+    "help": print_help,
+    "mkdir": make_dir,
+    "ping": ping
+}
+
+
+try:
+    dir_name = sys.argv[2]
+except IndexError:
+    dir_name = None
+
+try:
+    key = sys.argv[1]
+except IndexError:
+    key = None
+if key:
+    if do.get(key):
+        do[key]()
+    else:
+        print("Задан неверный ключ")
+        print("Укажите ключ help для получения справки")
+
+
+
+def summ_plus_100(x):
+    return x + 100
+
+def pow(x, y):
+    x ** 1
 #################################УРОК 6####################################
+
+
 
 #################################УРОК 7####################################
 
