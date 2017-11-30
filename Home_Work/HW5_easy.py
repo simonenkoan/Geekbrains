@@ -3,13 +3,19 @@
 # из которой запущен данный скрипт.
 # И второй скрипт, удаляющий эти папки.
 
+# Задача-2:
+# Напишите скрипт, отображающий папки текущей директории.
+
+# Задача-3:
+# Напишите скрипт, создающий копию файла, из которого запущен данный скрипт.
+
+# ---------->  ЗАДАНИЕ 1,2,3 ВЫПОЛНЯЕТСЯ ЧЕРЕЗ АРГУМЕНТЫ ПЕРЕДАННЫЕ ФАЙЛУ .py  <----------
+
 import os
-# import psutil
-# import shutil
+import shutil
 import sys
 
-
-spisok1 = ['dir_'+ str(i) for i in range(10)]
+# ---------->  Блок описания Функций ( имена которых вызываются через словарь DO)  <----------
 
 def make_dir(spisok):
     try:
@@ -24,24 +30,33 @@ def remove_dir(spisok):
         os.rmdir(i)
     print('Все папки успешно удалены!')
 
-def trying():
-    try:
-        return str(sys.argv)
-    except Exception:
-        print(' Это нельзя')
-    finally:
-        print(type(list(sys.argv)))
+def show_dir():
+    print('Список папок в текущем каталоге:')
+    for i in os.listdir():
+        if not os.path.isdir(i):
+            pass
+        else:
+           print(i)
+
+def copy_file(filename_exec):
+    if os.path.isfile(filename_exec):
+        shutil.copy(filename_exec, filename_exec+'.copy')
+        print('Копирование прошло успешно')
+    else:
+        print('Что-то пошло не так')
 
 def help_1():
     print('''
     Commands:
-    mkdir - make dir_0 to dir_9 in current dir
-    removedir - del dir dir_0 to dir_9 in current dir
+    mkdir - make dir in current dir
+    removedir - del dir in current dir
     help_1 - print help
+    dirshow - show dir
+    copy_file - copy python exec file
     ''')
 
-answer = ''
-
+# ---------->  Версия кода, где будут ждать пользователя для ввода варианта ответа  <----------
+# answer = ''
 # while answer != 'q':
 #     print('Нажмите 1 хотите создать папки и 2 если хотите удалить (доступно после создания)')
 #     answer = input('(1-создать, 2-удалить, q - выйти)')
@@ -55,20 +70,7 @@ answer = ''
 #     except Exception:
 #         print('Чтото пошло не так')
 
-key = sys.argv
-print(key)
-list1 = key
-
-
-do = {
-    "help_1" : help_1,
-    "mkdir" : make_dir,
-    "removedir" : remove_dir
-}
-
-print(do['mkdir'])
-
-#
+# ---------->  Версия , где создается список непосредственно, после запуска файла  <----------
 # if key[1] == 'help_1':
 #     do['help_1']()
 # elif key[1] == 'mkdir':
@@ -77,8 +79,23 @@ print(do['mkdir'])
 #     do['removedir'](spisok1)
 # print('"help" for info')
 
+# ---------->  [Рабочая] Версия , с аргументами, передается второй аргумент после имени файла  <----------
 
-command = key[1]
+key = sys.argv # <-----  в key записываем переданные аргументы после запуска
+
+# <----- Создание словаря DO по ключам будут выбираться значения (которые соответствуют функциям в блоке функций)
+do = {
+    "help_1" : help_1,
+    "mkdir" : make_dir,
+    "removedir" : remove_dir,
+    "dirshow" : show_dir,
+    "copy_file": copy_file
+}
+command = 0
+if len(key) > 1:
+    command = key[1] # <----- Назначаем command первый элемент списка key
+
+spisok1 = ['dir_' + str(i) for i in range(10)] # <----- Генерируем список с именами от dir_0 до dir_9
 
 if command:
     print('help_1 for help')
@@ -86,71 +103,15 @@ if command:
         if do.get(command):
             if command == 'help_1':
                 do[command]()
+            elif command == 'dirshow':
+                do[command]()
+            elif command == 'copy_file':
+                do[command](key[0])
             else:
                 do[command](spisok1)
     except Exception:
         print('"help_1" for info')
 
 
-
-
-# print ("This is the name of the script: ", sys.argv[0])
-# print ("Number of arguments: ", len(sys.argv))
-# print ("The arguments are: ", trying())
-
-
-# print('вы вышли из программы')
-#
-# while answer != "q":
-#     answer = input("Давайте выполним несколько операций? Y/N")
-#     if answer == 'Y':
-#         answer_choose()
-#         delo = ""
-#         while delo != 0:
-#             delo = int(input("Введите вариант:"))
-#             print("")
-#             if delo == 1:
-#                 print("Результат:")
-#                 print(os.listdir())
-#                 answer_choose()
-#             elif delo == 2:
-#                 print("Результат:")
-#                 print(os.getcwd())
-#                 answer_choose()
-#             elif delo == 3:
-#                 print("Результат:")
-#                 print(psutil.cpu_count())
-#                 answer_choose()
-#             elif delo == 4:
-#                 print("Результат:")
-#                 file_list = os.listdir()
-#                 i = 0
-#                 while i < len(file_list):
-#                     newFileName = (file_list[i] + ".dupl")
-#                     print(newFileName)
-#                     # копирование
-#                     proverka_file(file_list[i])
-#                     i += 1
-#                 answer_choose()
-#             else:
-#                 pass
-#     elif answer == "N":
-#         print("Приходдите когда будете готовы поработать")
-#     else:
-#         print("Кажется вы не определились. Возвращайтесть снова..")
-#
-
-
-
-
-
-# Задача-2:
-# Напишите скрипт, отображающий папки текущей директории.
-
-# def proverka_file(filename_i):
-#     if os.path.isfile(filename_i):
-#         shutil.copy(filename_i, newFileName)
-
-
-# Задача-3:
-# Напишите скрипт, создающий копию файла, из которого запущен данный скрипт.
+if command == 0:
+    help_1()
