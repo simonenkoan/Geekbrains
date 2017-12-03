@@ -494,8 +494,128 @@ def summ_plus_100(x):
 
 def pow(x, y):
     x ** 1
-#################################УРОК 6####################################
 
+
+#################################УРОК 6####################################
+    import random
+
+    class Person:
+
+        def __init__(self, name, surname, email, is_service_account=False):
+            self.name = name
+            self.surname = surname
+            self._email = email
+            self._id = random.randint(10000, 99999)
+            self.is_service_account = is_service_account
+
+        def change_name(self, name):
+            self.name = name
+
+        def change_surname(self, surname):
+            self.surname = surname
+
+    user1 = Person('Vasya', 'Pupkin', '123@123.com')
+    user2 = Person('NeVasya', 'NePupkin', 'Ne123@123.com')
+
+    class Manager(Person):
+
+        def change_email(self, person, new_email):
+            person._email = new_email
+
+    class Admin(Manager):
+
+        def __init__(self, name, surname, email, admin_type, is_service_account=False):
+            # Manager.__init__(self, name, surname, email, is_service_account)
+            super().__init__(name, surname, email, is_service_account)
+            self.admin_type = admin_type
+
+        def remove_person(self, person):
+            if person.is_service_account:
+                result = input('Р­С‚Рѕ СЃРµСЂРІРёСЃРЅС‹Р№ Р°РєРєР°СѓРЅС‚, РІС‹ СѓРІРµСЂРµРЅС‹? y/n')
+                if result == 'y' and person != self:
+                    database.remove(person)
+                elif person == self:
+                    print('РўС‹ РІ СЃРІРѕРµРј СѓРјРµ СѓРґР°Р»СЏС‚СЊ СЃР°Рј СЃРµР±СЏ!?')
+                    result = input(
+                        'РќСѓ РµСЃР»Рё С‚С‹ СЃРѕРІСЃРµРј СЃСѓРјР°С€РµРґС€РёР№, С‚Рѕ РґР°Р№ СЃРѕРіР»Р°СЃРёРµ! y/n')
+                    if result == 'y':
+                        database.remove(self)
+            else:
+                database.remove(person)
+
+    manager = Manager('Igor', 'Ivanov', 'mn@mn.com', True)
+    admin = Admin('Sasha', 'Petrov', 'admin@admin.com', 'linux', True)
+
+    print(admin.admin_type, admin._id)
+
+    database = [user1, user2, manager, admin]
+
+    # print(admin.is_service_account)
+    # print(manager._email)
+    # admin.change_email(manager, 'newemail@mail.com')
+    # print(manager._email)
+    #
+    # for person in database:
+    #     print(person.name)
+    #
+    # admin.remove_person(user1)
+    # admin.remove_person(manager)
+    # admin.remove_person(admin)
+    #
+    # for person in database:
+    #     print(person.name)
+    # -----------------------------------------------------------------------------------------
+    class Vehicle:
+
+        def go(self):
+            print('РўСЂР°РЅСЃРїРѕСЂС‚РЅРѕРµ СЃСЂРµРґСЃС‚РІРѕ РЅР°С‡РёРЅР°РµС‚ РґРІРёР¶РµРЅРёРµ')
+
+        def stop(self):
+            print('РўСЂР°РЅСЃРїРѕСЂС‚РЅРѕРµ СЃСЂРµРґСЃС‚РІРѕ РѕСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ')
+
+    class Car(Vehicle):
+
+        def __init__(self, car_model, car_speed):
+            self._model = car_model
+            self.speed = car_speed
+
+        def _start_engine(self):
+            print('Р—Р°РїСѓСЃРє РґРІРёРіР°С‚РµР»СЏ')
+
+        def go(self):
+            self._start_engine()
+            print('Car {} is going with speed {}'.format(self._model, self.speed))
+
+        def stop(self):
+            print('Car {} is stopped'.format(self._model))
+
+    class SportCar(Car):
+
+        def __init__(self, car_model, car_speed, color='Red'):
+            super().__init__(car_model, car_speed)
+            self.color = color
+
+    class Cycle(Vehicle):
+
+        def go(self):
+            print('Р’РµР»РѕСЃРёРїРµРґ РїРѕРµС…Р°Р»')
+
+        def stop(self):
+            print('Р’РµР»РѕСЃРёРїРµРґ РѕСЃС‚Р°РЅРѕРІРёР»СЃСЏ')
+
+    semaphor_current_color = 'green'
+
+    def semaphor(vehicle):
+        if semaphor_current_color == 'green':
+            vehicle.go()
+        else:
+            vehicle.stop()
+
+    vehicles = [SportCar('Ferrari', 200), Cycle(), Car('Lada', 100)]
+
+    for vehicle in vehicles:
+        semaphor(vehicle)
+        semaphor_current_color = 'red'
 
 
 #################################УРОК 7####################################
