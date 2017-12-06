@@ -17,8 +17,6 @@ import sys
 import time
 
 
-
-
 class Person(object):
     def __init__(self, health, damage, armor):
         self.health = health
@@ -43,7 +41,6 @@ class Player(Person):
         self.health = int(self.health) - (round(int(maniak.damage * maniak.special) / self.armor /self.level))
         time.sleep(0.5)
         print('Васино здоровье = {}'.format(vasya.health))
-
 
 
 class Enemy(Person):
@@ -92,7 +89,7 @@ time.sleep(5)
 #         elif maniak.health <= 0:
 #             print("Вася победел злобного Маньяка")
 #             break
-#             break
+
 
 class Fight:
     def fight_begin(self):
@@ -105,7 +102,6 @@ class Fight:
             vasya.live_or_dead()
         elif maniak.health > 0:
             print('Маньяк победил', 'Васюня - ', '{}'.format(vasya.live_or_dead()))
-
 
 
 
@@ -130,6 +126,4 @@ fight.fight_begin()
 
 # vasya_shvarcenegger._attack_from_Enemy()
 # maniak_slabak._attack_from_Player()
-
-
 
